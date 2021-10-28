@@ -31,7 +31,7 @@ public class GamePanel implements KeyListener{
 		gameMain.setLayout(new GridLayout(GameAttributions.gameRows, GameAttributions.gameColumns, 1, 1));
 		for(int row = 0; row < text.length; row++) {
 			for(int col = 0; col < text[row].length; col++) {
-				text[row][col] = new JTextArea(GameAttributions.gameRows, GameAttributions.gameColumns);
+				text[row][col] = new JTextArea();
 						
 				text[row][col].setBackground(Color.WHITE);
 				

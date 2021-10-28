@@ -1,8 +1,10 @@
 package team.scaucs1.logic;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.Random;
 
+import javafx.util.Pair;
 import team.scaucs1.data.attributions.GameAttributions;
 import team.scaucs1.data.structure.GameDataStructure;
 import team.scaucs1.graphic.panel.ExplainPanel;
@@ -33,8 +35,8 @@ public class GameLogic {
 	public static void getNewRect() {
 		Random random = new Random();
 		// 随机数范围是在定义的生成池数组的长度之内
-		int randomIndex = random.nextInt(GameAttributions.allRect.length);
-		currentRect = GameAttributions.allRect[randomIndex];
+		int randomIndex = random.nextInt(GameDataStructure.allRect.length);
+		currentRect = GameDataStructure.allRect[randomIndex];
 	}
 
 	public static void gameRun() {
@@ -86,30 +88,19 @@ public class GameLogic {
 	}
 
 	public static boolean canFall(int depth, int flat) {
-		int testRect = 0x8000;
-		for (int i = depth; i < depth + 4; i++) {
-			for (int j = flat; j < flat+ 4; j++) { // 双重遍历4X4
-				if ((testRect & currentRect) != 0) {// 找到当前下落图形的方块位置
-					// 它的下一行不是空的，则不能继续下落了
-					if(GameDataStructure.matrix[i+1][j] == 1)
-						return false;
-				}
-				testRect >>= 1;
-			}
+		
+		List<Pair<Integer, Integer>> posList = GameDataStructure.getMatchedRectPosList(currentRect);
+		for(Pair<Integer, Integer> pos :posList) {
+			if(GameDataStructure.matrix[depth+pos.getKey()+1][flat+pos.getValue()] == 1)
+				return false;
 		}
 		return true;
 	}
 
 	public static void setOccupied(int depth, int flat) {
-		int testRect = 0x8000;
-		for (int i = depth; i < depth + 4; i++) {
-			for (int j = flat; j < flat+ 4; j++) { // 双重遍历4X4
-				if ((testRect & currentRect) != 0) {// 找到当前下落图形的方块位置
-					// 设置为被占用
-					GameDataStructure.matrix[i][j] = 1;
-				}
-				testRect >>= 1;
-			}
+		List<Pair<Integer, Integer>> posList = GameDataStructure.getMatchedRectPosList(currentRect);
+		for(Pair<Integer, Integer> pos :posList) {
+			GameDataStructure.matrix[depth+pos.getKey()][flat+pos.getValue()] = 1;
 		}
 	}
 	
@@ -151,43 +142,28 @@ public class GameLogic {
 	}
 	
 	public static void clearRect(int depth, int flat) {
-		int testRect = 0x8000;
-		for (int i = depth; i < depth + 4; i++) {
-			for (int j = flat; j < flat+ 4; j++) { // 双重遍历4X4
-				if ((testRect & currentRect) != 0) {// 找到当前下落图形的方块位置
-					// 设置为白色背景，即清除
-					GamePanel.text[i][j].setBackground(Color.WHITE);
-				}
-				testRect >>= 1;
-			}
+		
+		List<Pair<Integer, Integer>> posList = GameDataStructure.getMatchedRectPosList(currentRect);
+		for(Pair<Integer, Integer> pos :posList) {
+			GamePanel.text[depth+pos.getKey()][flat+pos.getValue()].setBackground(Color.WHITE);
 		}
+		
 	}
 	
 	public static void drawRect(int depth, int flat) {
-		int testRect = 0x8000;
-		for (int i = depth; i < depth + 4; i++) {
-			for (int j = flat; j < flat+ 4; j++) { // 双重遍历4X4
-				if ((testRect & currentRect) != 0) {// 找到当前下落图形的方块位置
-					// 设置背景颜色，绘制出图形
-					GamePanel.text[i][j].setBackground(Color.BLUE);
-				}
-				testRect >>= 1;
-			}
+		
+		List<Pair<Integer, Integer>> posList = GameDataStructure.getMatchedRectPosList(currentRect);
+		for(Pair<Integer, Integer> pos :posList) {
+			GamePanel.text[depth+pos.getKey()][flat+pos.getValue()].setBackground(Color.BLUE);
 		}
+		
 	}
 	
 	public static boolean canSpin(int nextRect, int depth, int flat) {
-		int testRect = 0x8000;
-		for (int i = depth; i < depth + 4; i++) {
-			for (int j = flat; j < flat+ 4; j++) { // 双重遍历4X4
-				if ((testRect & nextRect) != 0) {// 找到尝试旋转后后图形的方块位置
-					// 如果该位置已经被其他方块占用，则不能旋转
-					if(GameDataStructure.matrix[i][j] == 1) {
-						return false;
-					}
-				}
-				testRect >>= 1;
-			}
+		List<Pair<Integer, Integer>> posList = GameDataStructure.getMatchedRectPosList(nextRect);
+		for(Pair<Integer, Integer> pos :posList) {
+			if(GameDataStructure.matrix[depth+pos.getKey()][flat+pos.getValue()] == 1)
+				return false;
 		}
 		return true;
 	}
