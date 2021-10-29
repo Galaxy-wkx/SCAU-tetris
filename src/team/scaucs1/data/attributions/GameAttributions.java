@@ -11,7 +11,7 @@ public class GameAttributions {
 
 	//窗口属性
 	public static int width = 600;
-	public static int height = 850;
+	public static int height = 900;
 
 	//游戏区域行列数
 	public static final int gameRows = 39;

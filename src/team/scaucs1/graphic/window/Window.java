@@ -28,7 +28,7 @@ public class Window extends JFrame {
 
 	public void addExplain() {
 		JPanel leftPanel = new ExplainPanel().getLeftPanel();
-		this.add(leftPanel,BorderLayout.WEST);
+		this.add(leftPanel,BorderLayout.SOUTH);
 		
 		JPanel rightPanel = new ExplainPanel().getRightPanel();
 		this.add(rightPanel,BorderLayout.EAST);
@@ -36,8 +36,8 @@ public class Window extends JFrame {
 	
 	public Window() {
 		this.setLayout(new BorderLayout());
-		this.addExplain();
 		this.addGameMain();
+		this.addExplain();
 		this.initWindow();
 		
 		

@@ -30,7 +30,7 @@ public class GameLogic {
 			gameRun();
 
 		}
-		ExplainPanel.statusLabel.setText("游戏状态：结束");
+		ExplainPanel.statusLabel.setText("--游戏状态：结束--");
 
 	}
 
@@ -121,7 +121,7 @@ public class GameLogic {
 			sleepTime -= GameAttributions.reducedSleepTime;
 		}
 		score += GameAttributions.bonusScore;
-		ExplainPanel.scoreLabel.setText("游戏得分："+score);
+		ExplainPanel.scoreLabel.setText("--游戏得分："+score+"--");
 	}
 	
 //	public static void refresh(int row) {

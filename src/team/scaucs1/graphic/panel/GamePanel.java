@@ -28,7 +28,7 @@ public class GamePanel implements KeyListener{
 	
 	
 	public void initGamePanel() {
-		gameMain.setLayout(new GridLayout(GameAttributions.gameRows, GameAttributions.gameColumns, 1, 1));
+		gameMain.setLayout(new GridLayout(GameAttributions.gameRows, GameAttributions.gameColumns, 2, 2));
 		for(int row = 0; row < text.length; row++) {
 			for(int col = 0; col < text[row].length; col++) {
 				text[row][col] = new JTextArea();
@@ -39,7 +39,7 @@ public class GamePanel implements KeyListener{
 				if(col == 0 || col == text[row].length - 1 || row == text.length - 1){
 					//±ß½ç
 //					text[row][col].setOpaque(false);
-					text[row][col].setBackground(Color.magenta);
+					text[row][col].setBackground(Color.DARK_GRAY);
 					
 				}
 				text[row][col].setEditable(false);
