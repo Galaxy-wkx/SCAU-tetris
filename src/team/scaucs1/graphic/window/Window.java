@@ -41,6 +41,7 @@ public class Window extends JFrame {
 		this.initWindow();
 		
 		
+		
 	}
 	
 }

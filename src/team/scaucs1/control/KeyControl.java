@@ -25,10 +25,10 @@ public class KeyControl {
 					return;
 			}
 			
-			
 			GameLogic.clearRect(GameLogic.depth, GameLogic.flat);//清除图形
 			GameLogic.flat--;//水平位置减一
 			GameLogic.drawRect(GameLogic.depth, GameLogic.flat);//重新绘制图形
+			
 		}
 	}
 	
@@ -37,8 +37,7 @@ public class KeyControl {
 			if(!GameLogic.isrunning)//判断游戏是否还在运行
 				return;
 			
-			List<Pair<Integer, Integer>> posList = GameDataStructure.getMatchedRectPosList(GameLogic.currentRect);
-			for(Pair<Integer, Integer> pos :posList) {
+			for(Pair<Integer, Integer> pos :GameLogic.posList) {
 				if(GameDataStructure.matrix[GameLogic.depth+pos.getKey()][GameLogic.flat+pos.getValue()+1] == 1)
 					return;
 			}
@@ -46,6 +45,7 @@ public class KeyControl {
 			GameLogic.clearRect(GameLogic.depth, GameLogic.flat);//清除图形
 			GameLogic.flat++;//水平位置加一
 			GameLogic.drawRect(GameLogic.depth, GameLogic.flat);//重新绘制图形
+			
 		}
 	}
 	
@@ -57,10 +57,10 @@ public class KeyControl {
 			if(!GameLogic.canFall(GameLogic.depth, GameLogic.flat))
 				return;
 
-			
 			GameLogic.clearRect(GameLogic.depth, GameLogic.flat);//清除图形
 			GameLogic.depth++;//深度加一
 			GameLogic.drawRect(GameLogic.depth, GameLogic.flat);//重新绘制图形
+			
 		}
 	}
 	
@@ -101,6 +101,7 @@ public class KeyControl {
 			if(GameLogic.canSpin(nextRect,GameLogic.depth, GameLogic.flat)) { //只有能够旋转才旋转
 				GameLogic.clearRect(GameLogic.depth, GameLogic.flat);
 				GameLogic.currentRect = nextRect;
+				GameLogic.posList = GameDataStructure.getMatchedRectPosList(nextRect);
 				GameLogic.drawRect(GameLogic.depth, GameLogic.flat);
 			}
 		}

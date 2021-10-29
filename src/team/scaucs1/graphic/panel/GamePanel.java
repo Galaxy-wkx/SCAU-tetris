@@ -21,7 +21,7 @@ import team.scaucs1.data.attributions.GameAttributions;
 public class GamePanel implements KeyListener{
 	
 	//ÓÎÏ·Ö÷Ãæ°å
-	JPanel gameMain = new JPanel();
+	JPanel gameMain;
 	
 	public static JTextArea[][] text;
 	
@@ -47,10 +47,12 @@ public class GamePanel implements KeyListener{
 			}
 		}
 		
+		
 	}
 	
 	public GamePanel() {
 		text = new JTextArea[GameAttributions.gameRows][GameAttributions.gameColumns];
+		this.gameMain = new JPanel();
 		this.initGamePanel();
 	}
 
@@ -77,6 +79,7 @@ public class GamePanel implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		
 	}
+
 
 	
 }
