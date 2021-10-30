@@ -3,7 +3,6 @@ package team.scaucs1;
 import javax.swing.UIManager;
 
 import team.scaucs1.graphic.window.GameWindow;
-import team.scaucs1.logic.GameLogic;
 
 public class Tetris{
 

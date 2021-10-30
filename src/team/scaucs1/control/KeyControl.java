@@ -1,17 +1,14 @@
 package team.scaucs1.control;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import javafx.util.Pair;
-import team.scaucs1.data.attributions.GameAttributions;
+import team.scaucs1.utils.Pair;
 import team.scaucs1.data.structure.GameDataStructure;
 import team.scaucs1.graphic.panel.ExplainPanel;
-import team.scaucs1.graphic.panel.GamePanel;
 import team.scaucs1.logic.GameLogic;
 
 public class KeyControl implements KeyListener{

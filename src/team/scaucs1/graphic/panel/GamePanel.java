@@ -1,15 +1,8 @@
 package team.scaucs1.graphic.panel;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.image.ImageObserver;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 

@@ -1,11 +1,9 @@
 package team.scaucs1.graphic.panel;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import team.scaucs1.Tetris;
-import team.scaucs1.graphic.window.GameWindow;
 import team.scaucs1.logic.GameLogic;
 
 

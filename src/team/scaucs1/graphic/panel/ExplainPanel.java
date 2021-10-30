@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import team.scaucs1.data.attributions.GameAttributions;
 
 
 public class ExplainPanel {

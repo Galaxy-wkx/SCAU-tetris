@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javafx.util.Pair;
 import team.scaucs1.data.attributions.GameAttributions;
+import team.scaucs1.utils.Pair;
 
 public class GameDataStructure {
 	public static int[][] matrix;

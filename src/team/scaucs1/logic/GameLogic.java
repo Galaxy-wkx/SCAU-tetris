@@ -2,12 +2,11 @@ package team.scaucs1.logic;
 
 import java.awt.Color;
 import java.util.List;
-import java.util.Random;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import javafx.util.Pair;
+import team.scaucs1.utils.Pair;
 import team.scaucs1.Tetris;
 import team.scaucs1.data.attributions.GameAttributions;
 import team.scaucs1.data.structure.GameDataStructure;
