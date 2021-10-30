@@ -18,7 +18,7 @@ public class ExplainPanel {
 	//左右说明面板
 	ImageIcon explainImg = new ImageIcon(System.getProperty("user.dir") + "\\picture\\explain.jpg");
 	Image infoImg = new ImageIcon(System.getProperty("user.dir") + "\\picture\\info.jpg").getImage();
-	JPanel leftPanel = new JPanel();
+	JPanel downPanel = new JPanel();
 	JPanel rightPanel = new JPanel() {
 		@Override
 		public void paintComponent(Graphics g) {
@@ -34,7 +34,7 @@ public class ExplainPanel {
 	public void initExplainPanel() {
 		
 
-		leftPanel.setLayout(new GridLayout(1,1));
+		downPanel.setLayout(new GridLayout(1,1));
 		rightPanel.setLayout(new GridLayout(2,1));
 		
 
@@ -43,7 +43,7 @@ public class ExplainPanel {
 //		leftPanel.add(new JLabel("→ - 方块右移"));
 //		leftPanel.add(new JLabel("↓ - 加速下落"));
 		JLabel imgLabel = new JLabel(explainImg);
-		leftPanel.add(imgLabel);
+		downPanel.add(imgLabel);
 		
 		statusLabel.setForeground(Color.BLACK);
 		scoreLabel.setForeground(Color.BLACK);
@@ -58,8 +58,8 @@ public class ExplainPanel {
 		initExplainPanel();
 	}
 
-	public JPanel getLeftPanel() {
-		return leftPanel;
+	public JPanel getdownPanel() {
+		return downPanel;
 	}
 
 	public JPanel getRightPanel() {

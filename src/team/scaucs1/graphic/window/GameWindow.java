@@ -4,12 +4,20 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import team.scaucs1.data.attributions.GameAttributions;
 import team.scaucs1.graphic.panel.ExplainPanel;
 import team.scaucs1.graphic.panel.GamePanel;
+import team.scaucs1.graphic.panel.StartPanel;
 
-public class Window extends JFrame {
+public class GameWindow extends JFrame {
+	
+	public JPanel gameMain;
+	public JPanel downPanel;
+	public JPanel rightPanel;
+	public JPanel startPanel;
+	
 	
 	public void initWindow() {
 		this.setSize(GameAttributions.width, GameAttributions.height);
@@ -22,25 +30,32 @@ public class Window extends JFrame {
 	
 	
 	public void addGameMain() {
-		JPanel gameMain = new GamePanel().getGameMain();
+		gameMain = new GamePanel().getGameMain();
 		this.add(gameMain,BorderLayout.CENTER);
+		
 	}
 
 	public void addExplain() {
-		JPanel leftPanel = new ExplainPanel().getLeftPanel();
-		this.add(leftPanel,BorderLayout.SOUTH);
+		downPanel = new ExplainPanel().getdownPanel();
+		this.add(downPanel,BorderLayout.SOUTH);
 		
-		JPanel rightPanel = new ExplainPanel().getRightPanel();
+		rightPanel = new ExplainPanel().getRightPanel();
 		this.add(rightPanel,BorderLayout.EAST);
+		
 	}
 	
-	public Window() {
+	public void addStartPanel() {
+		startPanel = new StartPanel().getStartPanel();
+		this.add(startPanel,BorderLayout.CENTER);
+		
+	}
+
+	
+	public GameWindow() {
+		
 		this.setLayout(new BorderLayout());
-		this.addGameMain();
-		this.addExplain();
+		this.addStartPanel();
 		this.initWindow();
-		
-		
 		
 	}
 	

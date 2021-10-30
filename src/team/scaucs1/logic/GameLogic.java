@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import javafx.util.Pair;
+import team.scaucs1.Tetris;
 import team.scaucs1.data.attributions.GameAttributions;
 import team.scaucs1.data.structure.GameDataStructure;
 import team.scaucs1.graphic.panel.ExplainPanel;
@@ -12,7 +16,8 @@ import team.scaucs1.graphic.panel.GamePanel;
 
 public class GameLogic {
 
-	public static boolean isrunning = true;
+	public static boolean isRunning = true;
+	public static boolean isPaused = false;
 	public static int currentRect;// 当前图形对应的四位十六进制数
 	public static Color currentRectColor;//当前图形的颜色
 	public static int depth, flat;// 方块坐标,深度位置与水平位置
@@ -23,15 +28,27 @@ public class GameLogic {
 
 	public static void gameBegin() {
 		while (true) {
-			if (!isrunning) {
+			if (!isRunning) {
 				break;
 			}
-
 			gameRun();
 
-		}
-		ExplainPanel.statusLabel.setText("--游戏状态：结束--");
 
+		}
+		gameEnd();
+	}
+	
+	//显示提示消息，重置游戏，跳转回开始界面
+	public static void gameEnd() {
+		ExplainPanel.statusLabel.setText("--游戏状态：结束--");
+		JOptionPane.showMessageDialog(null, "游戏结束！\n您的得分为："+score, "游戏结束",JOptionPane.INFORMATION_MESSAGE);
+		gameReset();
+		Tetris.gw.remove(Tetris.gw.gameMain);
+		Tetris.gw.remove(Tetris.gw.downPanel);
+		Tetris.gw.remove(Tetris.gw.rightPanel);
+		Tetris.gw.addStartPanel();
+		SwingUtilities.updateComponentTreeUI(Tetris.gw);
+		
 	}
 
 //	public static void getNewRect() {
@@ -49,10 +66,17 @@ public class GameLogic {
 		flat = GameDataStructure.getRandomFlat();
 		currentRectColor = GameDataStructure.getRandomColor();
 		drawRect(depth,flat);
-
+		
 		for (int i = 0; i < GameAttributions.gameRows; i++) {
 			try {
 				Thread.sleep(sleepTime);
+				if(!isRunning) {
+					break;
+				}
+				if(isPaused) {
+					i--;
+					continue;
+				}
 				if (canFall(depth, flat)) {
 					depth++;
 					fall(depth, flat);
@@ -60,7 +84,7 @@ public class GameLogic {
 					setOccupied(depth, flat);// 方块锁定占用
 					checkRow(depth);// 检查是否可以消除
 					if (isEnded()) {// 检查游戏是否结束
-						isrunning = false;
+						isRunning = false;
 					}
 					break;
 				}
@@ -70,6 +94,17 @@ public class GameLogic {
 			}
 
 		}
+	}
+	
+	public static void gameReset() {
+		isRunning = true;
+		isPaused = false;
+		sleepTime = GameAttributions.defaultSleepTime;
+		score = 0;
+		ExplainPanel.statusLabel.setText("--游戏状态：运行--");
+		ExplainPanel.scoreLabel.setText("--游戏得分："+score+"--");
+		GameDataStructure.initMatrix();
+		
 	}
 
 	public static void checkRow(int row) {

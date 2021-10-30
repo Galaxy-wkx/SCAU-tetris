@@ -18,7 +18,7 @@ import team.scaucs1.data.attributions.GameAttributions;
 
 
 
-public class GamePanel implements KeyListener{
+public class GamePanel{
 	
 	//游戏主面板
 	JPanel gameMain;
@@ -35,7 +35,9 @@ public class GamePanel implements KeyListener{
 						
 				text[row][col].setBackground(Color.WHITE);
 				
-				text[row][col].addKeyListener(this);
+				text[row][col].addKeyListener(new KeyControl());
+
+				
 				if(col == 0 || col == text[row].length - 1 || row == text.length - 1){
 					//边界
 //					text[row][col].setOpaque(false);
@@ -46,8 +48,7 @@ public class GamePanel implements KeyListener{
 				gameMain.add(text[row][col]);
 			}
 		}
-		
-		
+
 	}
 	
 	public GamePanel() {
@@ -62,23 +63,6 @@ public class GamePanel implements KeyListener{
 	}
 
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		KeyControl.spinRect(e);
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		KeyControl.moveLeft(e);
-		KeyControl.moveRight(e);
-		KeyControl.moveDown(e);
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-	}
 
 
 	
